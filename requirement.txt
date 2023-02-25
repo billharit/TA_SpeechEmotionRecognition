@@ -3,5 +3,4 @@ matplotlib
 librosa
 numpy
 librosa
-math
-tensorflow
+tensorflow==2.10

@@ -1,5 +1,9 @@
 import os
 import pandas as pd
+import numpy as np
+import librosa
+import math
+import tensorflow as tf
 
 
 def load_to_dataframe(train_folder_path, test_folder_path):
@@ -65,3 +69,62 @@ def load_to_dataframe(train_folder_path, test_folder_path):
         {"File_Path": test_file_path, "Target": test_sentiment_value})
 
     return train_sentiment_df, test_sentiment_df
+
+
+def turn_into_data_for_model(train_df, test_df):
+    # Set Variable for MFCC
+    num_mfcc = 13
+    n_fft = 2048
+    hop_length = 512
+    SAMPLE_RATE = 16000
+
+    train_data = {
+        "labels": [],
+        "mfcc": []
+    }
+
+    test_data = {
+        "labels": [],
+        "mfcc": []
+    }
+
+    # Encode Categories
+    labels = {'disgust': 0, 'happy': 1, 'sad': 2,
+              'neutral': 3, 'fear': 4, 'angry': 5}
+    train_df_encoded = train_df.replace({'Target': labels}, inplace=False)
+    test_df_encoded = test_df.replace({'Target': labels}, inplace=False)
+
+    for item, row in train_df.iterrows():
+        train_data['labels'].append(train_df_encoded.iloc[item, 1])
+        signal, sample_rate = librosa.load(
+            train_df_encoded.iloc[item, 0], sr=SAMPLE_RATE)
+        mfcc = librosa.feature.mfcc(
+            y=signal, sr=SAMPLE_RATE, n_mfcc=num_mfcc, n_fft=n_fft, hop_length=hop_length)
+        mfcc = mfcc.T
+        train_data["mfcc"].append(np.asarray(mfcc))
+        if item % 300 == 0:
+            print("Train Size:" + str(math.floor(item)))
+
+    for item, row in test_df.iterrows():
+        test_data['labels'].append(test_df_encoded.iloc[item, 1])
+        signal, sample_rate = librosa.load(
+            test_df_encoded.iloc[item, 0], sr=SAMPLE_RATE)
+        mfcc = librosa.feature.mfcc(
+            y=signal, sr=SAMPLE_RATE, n_mfcc=num_mfcc, n_fft=n_fft, hop_length=hop_length)
+        mfcc = mfcc.T
+        test_data["mfcc"].append(np.asarray(mfcc))
+        if item % 300 == 0:
+            print("Test Size:" + str(math.floor(item)))
+
+    train_data_value = np.asarray(train_data['mfcc'])
+    train_data_target = np.asarray(train_data["labels"])
+    train_data_value = tf.keras.preprocessing.sequence.pad_sequences(
+        train_data_value, maxlen=156)
+    test_data_value = np.asarray(test_data['mfcc'])
+    test_data_target = np.asarray(test_data["labels"])
+    test_data_value = tf.keras.preprocessing.sequence.pad_sequences(
+        test_data_value, maxlen=156)
+    print(train_data_value.shape)
+    print(test_data_value.shape)
+
+    return train_data_value, train_data_target, test_data_value, test_data_target
