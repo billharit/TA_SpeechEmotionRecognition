@@ -25,7 +25,34 @@ train_df, test_df = load_to_dataframe('dataset/train', 'dataset/test')
 
 
 train_data_value, train_data_target, test_data_value, test_data_target = turn_into_data_for_model(
-    train_df, test_df)
+    train_df, test_df, 1024, 512)
+
+x = train_cnn(train_data_value, train_data_target,
+              test_data_value, test_data_target, './logs/3-Block-CNN-DefaultDataFFT1024Hop512')
+
+train_data_value, train_data_target, test_data_value, test_data_target = turn_into_data_for_model(
+    train_df, test_df, 1024, 256)
+
+x = train_cnn(train_data_value, train_data_target,
+              test_data_value, test_data_target, './logs/3-Block-CNN-DefaultDataFFT1024Hop256')
+
+train_data_value, train_data_target, test_data_value, test_data_target = turn_into_data_for_model(
+    train_df, test_df, 800, 320)
+
+x = train_cnn(train_data_value, train_data_target,
+              test_data_value, test_data_target, './logs/3-Block-CNN-DefaultDataFFT800Hop320')
+
+train_data_value, train_data_target, test_data_value, test_data_target = turn_into_data_for_model(
+    train_df, test_df, 400, 200)
+
+x = train_cnn(train_data_value, train_data_target,
+              test_data_value, test_data_target, './logs/3-Block-CNN-DefaultDataFFT1400Hop200')
+
+train_data_value, train_data_target, test_data_value, test_data_target = turn_into_data_for_model(
+    train_df, test_df, 800, 400)
+
+x = train_cnn(train_data_value, train_data_target,
+              test_data_value, test_data_target, './logs/3-Block-CNN-DefaultDataFFT800Hop400')
 
 # np.save("train_data_value_default", train_data_value)
 # np.save("train_data_target_default", train_data_target)
@@ -43,9 +70,6 @@ train_data_value, train_data_target, test_data_value, test_data_target = turn_in
 # tensorboard_callback_snn = tf.keras.callbacks.TensorBoard(
 #     log_dir='./logs/modelSNN')
 
-
-x = train_cnn(train_data_value, train_data_target,
-              test_data_value, test_data_target)
 
 # model4 = tf.keras.Sequential()
 

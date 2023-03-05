@@ -26,7 +26,7 @@ def train_snn(train_data_value, train_data_target, test_data_value, test_data_ta
     return history
 
 
-def train_cnn(train_data_value, train_data_target, test_data_value, test_data_target):
+def train_cnn(train_data_value, train_data_target, test_data_value, test_data_target, callbackdir):
     model = tf.keras.Sequential()
     model.add(tf.keras.layers.Conv2D(128, (3, 3), activation='relu', input_shape=(
         train_data_value.shape[1], train_data_value.shape[2], 1)))
@@ -55,7 +55,7 @@ def train_cnn(train_data_value, train_data_target, test_data_value, test_data_ta
     optimiser = tf.keras.optimizers.Adam(learning_rate=0.0001)
     model.summary()
     tensorboard_callback_cnn = tf.keras.callbacks.TensorBoard(
-        log_dir='./logs/3-Block-CNN-DefaultDataHop1024')
+        log_dir=callbackdir)
     model.compile(optimizer=optimiser,
                   loss='sparse_categorical_crossentropy',
                   metrics=['accuracy'])
