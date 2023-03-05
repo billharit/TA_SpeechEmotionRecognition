@@ -55,15 +55,12 @@ def train_cnn(train_data_value, train_data_target, test_data_value, test_data_ta
     optimiser = tf.keras.optimizers.Adam(learning_rate=0.0001)
     model.summary()
     tensorboard_callback_cnn = tf.keras.callbacks.TensorBoard(
-        log_dir='./logs/modelCNN')
-    csv_callback_cnn = tf.keras.callbacks.CSVLogger(
-        'training.log'
-    )
+        log_dir='./logs/3-Block-CNN-DefaultDataHop1024')
     model.compile(optimizer=optimiser,
                   loss='sparse_categorical_crossentropy',
                   metrics=['accuracy'])
     history = model.fit(train_data_value, train_data_target, validation_data=(
-        test_data_value, test_data_target), batch_size=32, epochs=50, callbacks=[tensorboard_callback_cnn, csv_callback_cnn])
+        test_data_value, test_data_target), batch_size=32, epochs=50, callbacks=[tensorboard_callback_cnn])
     return history
 
 

@@ -24,13 +24,13 @@ train_df, test_df = load_to_dataframe('dataset/train', 'dataset/test')
 # print(test_sample_rate_df)
 
 
-# train_data_value, train_data_target, test_data_value, test_data_target = turn_into_data_for_model(
-#     train_df, test_df)
+train_data_value, train_data_target, test_data_value, test_data_target = turn_into_data_for_model(
+    train_df, test_df)
 
-# np.save("train_data_value", train_data_value)
-# np.save("train_data_target", train_data_target)
-# np.save("test_data_value", test_data_value)
-# np.save("test_data_target", test_data_target)
+# np.save("train_data_value_default", train_data_value)
+# np.save("train_data_target_default", train_data_target)
+# np.save("test_data_value_default", test_data_value)
+# np.save("test_data_target_default", test_data_target)
 
 # train_data_value = np.load('./processed_data/train_data_value.npy')
 # train_data_target = np.load('./processed_data/train_data_target.npy')
@@ -44,8 +44,8 @@ train_df, test_df = load_to_dataframe('dataset/train', 'dataset/test')
 #     log_dir='./logs/modelSNN')
 
 
-# x = train_cnn(train_data_value, train_data_target,
-#               test_data_value, test_data_target)
+x = train_cnn(train_data_value, train_data_target,
+              test_data_value, test_data_target)
 
 # model4 = tf.keras.Sequential()
 
