@@ -71,6 +71,26 @@ def load_to_dataframe(train_folder_path, test_folder_path):
     return train_sentiment_df, test_sentiment_df
 
 
+def get_sample_rate(audio_df):
+    sample_rate_dataframe = pd.DataFrame(columns=["File_Name", "Sample_Rate"])
+
+    for item, row in audio_df.iterrows():
+        file_name = row["File_Path"]
+        # print(audio_df.iloc[item, 0])
+        # signal, sample_rate = librosa.load(file_name, sr=None)
+        sample_rate = librosa.get_samplerate(file_name)
+        duration = librosa.get_duration(path=file_name, sr=sample_rate)
+        # Put all File Name and Sample Rate into one DataFrame (sample_rate_dataframe)
+        new_row = {"File_Name": file_name,
+                   "Sample_Rate": sample_rate, "Duration": duration}
+        sample_rate_dataframe = pd.concat(
+            [sample_rate_dataframe, pd.DataFrame(new_row, index=[0])])
+
+    sample_rate_dataframe = sample_rate_dataframe.reset_index(drop=True)
+
+    return sample_rate_dataframe
+
+
 def turn_into_data_for_model(train_df, test_df):
     # Set Variable for MFCC
     num_mfcc = 13

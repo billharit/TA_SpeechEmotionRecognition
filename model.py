@@ -28,14 +28,14 @@ def train_snn(train_data_value, train_data_target, test_data_value, test_data_ta
 
 def train_cnn(train_data_value, train_data_target, test_data_value, test_data_target):
     model = tf.keras.Sequential()
-    model.add(tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(
+    model.add(tf.keras.layers.Conv2D(128, (3, 3), activation='relu', input_shape=(
         train_data_value.shape[1], train_data_value.shape[2], 1)))
     model.add(tf.keras.layers.MaxPooling2D(
         (3, 3), strides=(2, 2), padding='same'))
     model.add(tf.keras.layers.BatchNormalization())
 
     # 2nd conv layer
-    model.add(tf.keras.layers.Conv2D(32, (3, 3), activation='relu'))
+    model.add(tf.keras.layers.Conv2D(64, (3, 3), activation='relu'))
     model.add(tf.keras.layers.MaxPooling2D(
         (3, 3), strides=(2, 2), padding='same'))
     model.add(tf.keras.layers.BatchNormalization())
@@ -56,11 +56,14 @@ def train_cnn(train_data_value, train_data_target, test_data_value, test_data_ta
     model.summary()
     tensorboard_callback_cnn = tf.keras.callbacks.TensorBoard(
         log_dir='./logs/modelCNN')
+    csv_callback_cnn = tf.keras.callbacks.CSVLogger(
+        'training.log'
+    )
     model.compile(optimizer=optimiser,
                   loss='sparse_categorical_crossentropy',
                   metrics=['accuracy'])
     history = model.fit(train_data_value, train_data_target, validation_data=(
-        test_data_value, test_data_target), batch_size=32, epochs=10, callbacks=[tensorboard_callback_cnn])
+        test_data_value, test_data_target), batch_size=32, epochs=50, callbacks=[tensorboard_callback_cnn, csv_callback_cnn])
     return history
 
 

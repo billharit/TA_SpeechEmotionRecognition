@@ -4,10 +4,25 @@ import numpy as np
 import librosa
 import math
 import tensorflow as tf
-from dataset import load_to_dataframe, turn_into_data_for_model
+from dataset import load_to_dataframe, turn_into_data_for_model, get_sample_rate
+from model import train_cnn
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 train_df, test_df = load_to_dataframe('dataset/train', 'dataset/test')
+
+# Print the counts
+# print(train_df['Target'].value_counts())
+# print(test_df['Target'].value_counts())
+
+# Get Sample Rate and Duration Dataframe and save to CSV
+# train_sample_rate_df = get_sample_rate(train_df)
+# # print(train_sample_rate_df)
+# train_sample_rate_df.to_csv("Train_SampleRate.csv")
+# test_sample_rate_df = get_sample_rate(test_df)
+# test_sample_rate_df.to_csv("Test_SampleRate.csv")
+
+# print(test_sample_rate_df)
+
 
 # train_data_value, train_data_target, test_data_value, test_data_target = turn_into_data_for_model(
 #     train_df, test_df)
@@ -17,17 +32,20 @@ train_df, test_df = load_to_dataframe('dataset/train', 'dataset/test')
 # np.save("test_data_value", test_data_value)
 # np.save("test_data_target", test_data_target)
 
-train_data_value = np.load('train_data_value.npy')
-train_data_target = np.load('train_data_target.npy')
-test_data_value = np.load('test_data_value.npy')
-test_data_target = np.load('test_data_target.npy')
-print(train_data_value.shape)
-print(test_data_value.shape)
+# train_data_value = np.load('./processed_data/train_data_value.npy')
+# train_data_target = np.load('./processed_data/train_data_target.npy')
+# test_data_value = np.load('./processed_data/test_data_value.npy')
+# test_data_target = np.load('./processed_data/test_data_target.npy')
+# print(train_data_value.shape)
+# print(test_data_value.shape)
 
-tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir='./logs')
-tensorboard_callback_snn = tf.keras.callbacks.TensorBoard(
-    log_dir='./logs/modelSNN')
+# tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir='./logs')
+# tensorboard_callback_snn = tf.keras.callbacks.TensorBoard(
+#     log_dir='./logs/modelSNN')
 
+
+# x = train_cnn(train_data_value, train_data_target,
+#               test_data_value, test_data_target)
 
 # model4 = tf.keras.Sequential()
 
