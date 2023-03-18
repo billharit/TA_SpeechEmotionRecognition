@@ -91,9 +91,9 @@ def get_sample_rate(audio_df):
     return sample_rate_dataframe
 
 
-def turn_into_data_for_model(train_df, test_df, fft, hop):
+def turn_into_data_for_model(train_df, test_df, mfcc_number, fft, hop):
     # Set Variable for MFCC
-    num_mfcc = 13
+    num_mfcc = mfcc_number
     SAMPLE_RATE = 16000
     n_fft = fft
     hop_length = hop
