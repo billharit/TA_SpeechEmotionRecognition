@@ -49,20 +49,69 @@ def cnn_lstm(optimizer='adam', learning_rate=0.0001):
                   loss='sparse_categorical_crossentropy',
                   metrics=['accuracy'])
     # model.summary()
+    early_stop = tf.keras.callbacks.EarlyStopping(
+        monitor='val_loss', patience=5)
     str_learning_rate = str(learning_rate).replace('.', '')
     csv_logger = tf.keras.callbacks.CSVLogger(
         'robust_cnn_lstm{0}_{1}.csv'.format(optimizer, str_learning_rate))
     history = model.fit(train_data_value, train_data_target, validation_data=(
-        test_data_value, test_data_target), batch_size=32, epochs=30, callbacks=[csv_logger])
+        test_data_value, test_data_target), batch_size=32, epochs=30, callbacks=[csv_logger, early_stop])
+    return model
+
+
+def resnet_lstm_unweighted(optimizer='adam', learning_rate=0.0001):
+    model = tf.keras.Sequential()
+    base_model = tf.keras.applications.resnet_v2.ResNet50V2(
+        include_top=False, weights=None, input_shape=(train_data_value.shape[1], train_data_value.shape[2], 1))
+    model.add(base_model)
+    model.add(tf.keras.layers.TimeDistributed(tf.keras.layers.Flatten()))
+    model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(128)))
+    model.add(tf.keras.layers.Dense(6, activation="softmax"))
+    optimiser = tf.keras.optimizers.get(optimizer)
+    optimiser.learning_rate.assign(learning_rate)
+    model.compile(optimizer=optimiser,
+                  loss='sparse_categorical_crossentropy',
+                  metrics=['accuracy'])
+    str_learning_rate = str(learning_rate).replace('.', '')
+    early_stop = tf.keras.callbacks.EarlyStopping(
+        monitor='val_loss', patience=5)
+    csv_logger = tf.keras.callbacks.CSVLogger(
+        'resnet_lstm{0}_{1}.csv'.format(optimizer, str_learning_rate))
+    history = model.fit(train_data_value, train_data_target, validation_data=(
+        test_data_value, test_data_target), batch_size=32, epochs=30, callbacks=[csv_logger, early_stop])
+    return model
+
+
+def resnet_unweighted(optimizer='adam', learning_rate=0.0001):
+    model = tf.keras.Sequential()
+    base_model = tf.keras.applications.resnet_v2.ResNet50V2(
+        include_top=False, weights=None, input_shape=(train_data_value.shape[1], train_data_value.shape[2], 1))
+    model.add(base_model)
+    model.add(tf.keras.layers.Flatten())
+    model.add(tf.keras.layers.Dense(6, activation="softmax"))
+    optimiser = tf.keras.optimizers.get(optimizer)
+    optimiser.learning_rate.assign(learning_rate)
+    model.compile(optimizer=optimiser,
+                  loss='sparse_categorical_crossentropy',
+                  metrics=['accuracy'])
+    str_learning_rate = str(learning_rate).replace('.', '')
+    early_stop = tf.keras.callbacks.EarlyStopping(
+        monitor='val_loss', patience=5)
+    csv_logger = tf.keras.callbacks.CSVLogger(
+        'resnet{0}_{1}.csv'.format(optimizer, str_learning_rate))
+    history = model.fit(train_data_value, train_data_target, validation_data=(
+        test_data_value, test_data_target), batch_size=32, epochs=30, callbacks=[csv_logger, early_stop])
     return model
 
 
 optimizer_list = ['adam', 'rmsprop', 'sgd', 'adagrad']
-learning_rate_list = [0.01, 0.1, 0.001]
+learning_rate_list = [0.0001]
 
 for x in optimizer_list:
     for y in learning_rate_list:
         cnn_lstm(x, y)
+        resnet_lstm_unweighted(x, y)
+        resnet_unweighted(x, y)
 
 # param_grid = {
 #     'optimizer': ['adam'],
