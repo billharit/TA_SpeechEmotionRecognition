@@ -11,3 +11,5 @@ saved_model
 venv
 ravdess_dataset
 trash
+logs2
+checkpoints

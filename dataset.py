@@ -139,11 +139,11 @@ def turn_into_data_for_model(train_df, test_df, mfcc_number, fft, hop):
     train_data_value = np.asarray(train_data['mfcc'])
     train_data_target = np.asarray(train_data["labels"])
     train_data_value = tf.keras.preprocessing.sequence.pad_sequences(
-        train_data_value, maxlen=156)
+        train_data_value, maxlen=156, dtype="float32")
     test_data_value = np.asarray(test_data['mfcc'])
     test_data_target = np.asarray(test_data["labels"])
     test_data_value = tf.keras.preprocessing.sequence.pad_sequences(
-        test_data_value, maxlen=156)
+        test_data_value, maxlen=156, dtype="float32")
     print(train_data_value.shape)
     print(test_data_value.shape)
 
