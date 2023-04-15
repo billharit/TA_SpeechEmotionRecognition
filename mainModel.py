@@ -33,6 +33,12 @@ def cnn_lstm(optimizer='adam', learning_rate=0.0001, modelName="x"):
     model.add(tf.keras.layers.Conv2D(128, (2, 2)))
     model.add(tf.keras.layers.BatchNormalization())
     model.add(tf.keras.layers.Activation('elu'))
+    model.add(tf.keras.layers.MaxPooling2D(
+        (2, 2), strides=(2, 2), padding='same'))
+
+    model.add(tf.keras.layers.Conv2D(128, (2, 2)))
+    model.add(tf.keras.layers.BatchNormalization())
+    model.add(tf.keras.layers.Activation('elu'))
 
     model.add(tf.keras.layers.TimeDistributed(tf.keras.layers.Flatten()))
     model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(128)))
@@ -93,12 +99,54 @@ def cnn_lstm(optimizer='adam', learning_rate=0.0001, modelName="x"):
 # model, history = cnn_lstm(
 #     learning_rate=0.0001, modelName="ravdess_with_timestretch")
 
+# train_data_value = np.load(
+#     'saved_dataset/ravdess_data.npy')
+# train_data_target = np.load(
+#     'saved_dataset/ravdess_data_target.npy')
+# test_data_value = np.load('saved_dataset/ravdess_test.npy')
+# test_data_target = np.load('saved_dataset/ravdess_test_target.npy')
+
+# model, history = cnn_lstm(
+#     learning_rate=0.0001, modelName="ravdess_with_pitchshift")
+
+
 train_data_value = np.load(
-    'saved_dataset/ravdess_data.npy')
+    'saved_dataset/crema_train_gaussian_value_padded.npy')
 train_data_target = np.load(
-    'saved_dataset/ravdess_data_target.npy')
-test_data_value = np.load('saved_dataset/ravdess_test.npy')
-test_data_target = np.load('saved_dataset/ravdess_test_target.npy')
+    'saved_dataset/crema_train_gaussian_target.npy')
+test_data_value = np.load('saved_dataset/crema_d_f32_test_data_value.npy')
+test_data_target = np.load('saved_dataset/crema_d_f32_test_data_target.npy')
 
 model, history = cnn_lstm(
-    learning_rate=0.0001, modelName="ravdess_with_pitchshift")
+    learning_rate=0.0001, modelName="RCL4crema-d-gaussian")
+
+train_data_value = np.load(
+    'saved_dataset/crema_train_pitch_value_padded.npy')
+train_data_target = np.load(
+    'saved_dataset/crema_train_pitch_target.npy')
+test_data_value = np.load('saved_dataset/crema_d_f32_test_data_value.npy')
+test_data_target = np.load('saved_dataset/crema_d_f32_test_data_target.npy')
+
+model, history = cnn_lstm(
+    learning_rate=0.001, modelName="RCL4crema-d-pitch")
+
+train_data_value = np.load(
+    'saved_dataset/crema_train_timeStretch_value_padded.npy')
+train_data_target = np.load(
+    'saved_dataset/crema_train_timeStretch_target.npy')
+test_data_value = np.load('saved_dataset/crema_d_f32_test_data_value.npy')
+test_data_target = np.load('saved_dataset/crema_d_f32_test_data_target.npy')
+
+model, history = cnn_lstm(
+    learning_rate=0.001, modelName="RCL4crema-d-timeStretch")
+
+
+train_data_value = np.load(
+    'saved_dataset/crema_d_f32_train_data_value.npy')
+train_data_target = np.load(
+    'saved_dataset/crema_d_f32_train_data_target.npy')
+test_data_value = np.load('saved_dataset/crema_d_f32_test_data_value.npy')
+test_data_target = np.load('saved_dataset/crema_d_f32_test_data_target.npy')
+
+model, history = cnn_lstm(
+    learning_rate=0.001, modelName="RCL4crema-d-")
