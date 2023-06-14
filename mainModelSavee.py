@@ -54,63 +54,55 @@ def cnn_lstm(optimizer='adam', learning_rate=0.0001, modelName="x"):
     checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
         filepath=checkpoint_path, save_best_only=True, monitor='val_accuracy', mode='max')
     early_stop = tf.keras.callbacks.EarlyStopping(
-        monitor='val_loss', patience=10)
+        monitor='val_loss', patience=15)
     str_learning_rate = str(learning_rate).replace('.', '')
     csv_logger = tf.keras.callbacks.CSVLogger(
         '{0}{1}_{2}.csv'.format(modelName, optimizer, str_learning_rate))
     history = model.fit(train_data_value, train_data_target, validation_data=(
-        test_data_value, test_data_target), batch_size=16, epochs=90, callbacks=[csv_logger, early_stop])
+        test_data_value, test_data_target), batch_size=16, epochs=60, callbacks=[csv_logger, early_stop])
     return model, history
 
-
-# train_data_value = np.load('saved_dataset/crema_data_train.npy')
-# train_data_target = np.load('saved_dataset/crema_data_target.npy')
-# test_data_value = np.load('saved_dataset/crema_data_test.npy')
-# test_data_target = np.load('saved_dataset/crema_data_test_target.npy')
-
-# train_data_value = np.load('saved_dataset/40_2048_512_train_data_value.npy')
-# train_data_target = np.load('saved_dataset/40_2048_512_train_data_target.npy')
-# test_data_value = np.load(
-#     'saved_dataset/40_2048_512_test_data_value.npy')
-# test_data_target = np.load('saved_dataset/40_2048_512_test_data_target.npy')
-
-# yang bener
-# train_data_value = np.load('saved_dataset/crema_d_f32_train_data_value.npy')
-# train_data_target = np.load('saved_dataset/crema_d_f32_train_data_target.npy')
-# test_data_value = np.load(
-#     'saved_dataset/crema_d_f32_test_data_value.npy')
-# test_data_target = np.load('saved_dataset/crema_d_f32_test_data_target.npy')
-
-# model, history = cnn_lstm(
-#     learning_rate=0.001, modelName="RobustCNNLSTM-CREMA-DataLamaf32Batch16")
-# model.save("RobustCNNLSTM-CREMA-DataLamaf32Batch16")
 
 # train_data_value = np.load('crema_d_f32_train_data_value.npy')
 # train_data_target = np.load('crema_d_f32_train_data_target.npy')
 # test_data_value = np.load('crema_d_f32_test_data_value.npy')
 # test_data_target = np.load('crema_d_f32_test_data_target.npy')
 
-# test_data_value = np.load('saved_dataset/ravdessFix/ravdess_test.npy')
-# test_data_target = np.load('saved_dataset/ravdessFix/ravdess_test_target.npy')
-# train_data_value = np.load(
-#     'saved_dataset/ravdessFix/ravdess_dataWithGaussian_train.npy')
-# train_data_target = np.load(
-#     'saved_dataset/ravdessFix/ravdess_dataWithGaussian_target.npy')
-# model, history = cnn_lstm(
-#     learning_rate=0.0001, modelName="tesxxa")
+train_data_value = np.load('saved_dataset/saveeFix/standardSR_savee_data.npy')
+train_data_target = np.load(
+    'saved_dataset/saveeFix/standardSR_savee_data_target.npy')
+test_data_value = np.load('saved_dataset/saveeFix/standardSR_savee_test.npy')
+test_data_target = np.load(
+    'saved_dataset/saveeFix/standardSR_savee_test_target.npy')
+
+model, history = cnn_lstm("adam", 0.0001, "SaveeCNNLSTMBatch16")
+model.save("SaveeCNNLSTMBatch16")
 
 # train_data_value1 = np.load(
-#     'saved_dataset/ravdessFix/ravdess_dataWithGaussian_train.npy')
+#     'saved_dataset/saveeFix/standardSR_savee_dataWithGaussianNoise_train.npy')
 # train_data_target1 = np.load(
-#     'saved_dataset/ravdessFix/ravdess_dataWithGaussian_target.npy')
+#     'saved_dataset/saveeFix/standardSR_savee_dataWithGaussianNoise_target.npy')
 # train_data_value2 = np.load(
-#     'saved_dataset/ravdessFix/ravdess_dataWithTimeStretch2_train.npy')
+#     'saved_dataset/saveeFix/standardSR_savee_dataWithTimeStretch_train.npy')
 # train_data_target2 = np.load(
-#     'saved_dataset/ravdessFix/ravdess_dataWithTimeStretch2_target.npy')
+#     'saved_dataset/saveeFix/standardSR_savee_dataWithTimeStretch_target.npy')
 # train_data_value3 = np.load(
-#     'saved_dataset/ravdessFix/ravdess_dataWithPitchShift_train.npy')
+#     'saved_dataset/saveeFix/standardSR_savee_dataWithPitchShift_train.npy')
 # train_data_target3 = np.load(
-#     'saved_dataset/ravdessFix/ravdess_dataWithPitchShift_target.npy')
+#     'saved_dataset/saveeFix/standardSR_savee_dataWithPitchShift_target.npy')
+
+# train_data_value = train_data_value1
+# train_data_target = train_data_target1
+# model, history = cnn_lstm(
+#     learning_rate=0.0001, modelName="SAVEE-gaussian")
+# train_data_value = train_data_value2
+# train_data_target = train_data_target2
+# model, history = cnn_lstm(
+#     learning_rate=0.0001, modelName="SAVEE-timestretch")
+# train_data_value = train_data_value3
+# train_data_target = train_data_target3
+# model, history = cnn_lstm(
+#     learning_rate=0.0001, modelName="SAVEE-pitchShift")
 
 # train_data_value = np.concatenate(
 #     (train_data_value1, train_data_value2[math.floor(len(train_data_value2)/2):], train_data_value3[math.floor(len(train_data_value3)/2):]), axis=0)
@@ -118,7 +110,7 @@ def cnn_lstm(optimizer='adam', learning_rate=0.0001, modelName="x"):
 #     (train_data_target1, train_data_target2[math.floor(len(train_data_target2)/2):], train_data_target3[math.floor(len(train_data_target3)/2):]), axis=0)
 
 # model, history = cnn_lstm(
-#     learning_rate=0.0001, modelName="RCL4Ravdess-gaussian-timeStretch-pitch")
+#     learning_rate=0.0001, modelName="SAVEE-gaussian-timeStretch-pitchShift")
 
 # train_data_value = np.concatenate(
 #     (train_data_value1, train_data_value2[math.floor(len(train_data_value2)/2):]), axis=0)
@@ -126,7 +118,23 @@ def cnn_lstm(optimizer='adam', learning_rate=0.0001, modelName="x"):
 #     (train_data_target1, train_data_target2[math.floor(len(train_data_target2)/2):]), axis=0)
 
 # model, history = cnn_lstm(
-#     learning_rate=0.0001, modelName="RCL4Ravdess-gaussian-timeStretch")
+#     learning_rate=0.0001, modelName="SAVEE-gaussian-timeStretch")
+
+# train_data_value = np.concatenate(
+#     (train_data_value1, train_data_value3[math.floor(len(train_data_value3)/2):]), axis=0)
+# train_data_target = np.concatenate(
+#     (train_data_target1, train_data_target3[math.floor(len(train_data_target3)/2):]), axis=0)
+
+# model, history = cnn_lstm(
+#     learning_rate=0.0001, modelName="SAVEE-gaussian-pitchShift")
+
+# train_data_value = np.concatenate(
+#     (train_data_value3, train_data_value2[math.floor(len(train_data_value2)/2):]), axis=0)
+# train_data_target = np.concatenate(
+#     (train_data_target3, train_data_target2[math.floor(len(train_data_target2)/2):]), axis=0)
+
+# model, history = cnn_lstm(
+#     learning_rate=0.0001, modelName="SAVEE-pitchShift-timeStretch")
 
 # x
 # train_data_value = train_data_value1

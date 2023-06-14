@@ -13,3 +13,9 @@ ravdess_dataset
 trash
 logs2
 checkpoints
+SAVEEE
+SaveeDataset
+*.csv
+*.pb
+*.index
+variables.*
