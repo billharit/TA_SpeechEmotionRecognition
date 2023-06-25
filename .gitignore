@@ -19,3 +19,6 @@ SaveeDataset
 *.pb
 *.index
 variables.*
+*.npy
+*.png
+*.wav

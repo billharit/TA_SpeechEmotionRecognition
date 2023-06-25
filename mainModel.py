@@ -50,16 +50,17 @@ def cnn_lstm(optimizer='adam', learning_rate=0.0001, modelName="x"):
                   loss='sparse_categorical_crossentropy',
                   metrics=['accuracy'])
     model.summary()
-    checkpoint_path = "checkpoints/{0}".format(modelName)
+    checkpoint_path = "checkpoints/IF_{0}".format(modelName)
     checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
         filepath=checkpoint_path, save_best_only=True, monitor='val_accuracy', mode='max')
     early_stop = tf.keras.callbacks.EarlyStopping(
-        monitor='val_loss', patience=10)
+        monitor='val_loss', patience=3)
     str_learning_rate = str(learning_rate).replace('.', '')
     csv_logger = tf.keras.callbacks.CSVLogger(
         '{0}{1}_{2}.csv'.format(modelName, optimizer, str_learning_rate))
     history = model.fit(train_data_value, train_data_target, validation_data=(
-        test_data_value, test_data_target), batch_size=16, epochs=90, callbacks=[csv_logger, early_stop])
+        test_data_value, test_data_target), batch_size=32, epochs=30, callbacks=[csv_logger, early_stop])
+    model.save(modelName)
     return model, history
 
 
@@ -182,15 +183,15 @@ def cnn_lstm(optimizer='adam', learning_rate=0.0001, modelName="x"):
 # model, history = cnn_lstm(
 #     learning_rate=0.0001, modelName="ravdess_with_timestretch")
 
-# train_data_value = np.load(
-#     'saved_dataset/ravdessFix/ravdess_data.npy')
-# train_data_target = np.load(
-#     'saved_dataset/ravdessFix/ravdess_data_target.npy')
-# test_data_value = np.load('saved_dataset/ravdess_test.npy')
-# test_data_target = np.load('saved_dataset/ravdess_test_target.npy')
+train_data_value = np.load(
+    'saved_dataset/ravdessFix/ravdess_data.npy')
+train_data_target = np.load(
+    'saved_dataset/ravdessFix/ravdess_data_target.npy')
+test_data_value = np.load('saved_dataset/ravdessFix/ravdess_test.npy')
+test_data_target = np.load('saved_dataset/ravdessFix/ravdess_test_target.npy')
 
-# model, history = cnn_lstm(
-#     learning_rate=0.0001, modelName="ravdess_with_pitchshift")
+model, history = cnn_lstm(
+    learning_rate=0.0001, modelName="BuatInterface1")
 
 
 # train_data_value1 = np.load(
