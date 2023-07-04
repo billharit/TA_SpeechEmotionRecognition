@@ -10,8 +10,8 @@ from scikeras.wrappers import KerasClassifier
 
 train_data_value = np.load('ravdess_train_data_value.npy')
 train_data_target = np.load('ravdess_train_data_target.npy')
-test_data_value = np.load('ravdess_test_data_value.npy')
-test_data_target = np.load('ravdess_test_data_target.npy')
+test_data_value = np.load('ravdess_validation_data_value.npy')
+test_data_target = np.load('ravdess_validation_data_target.npy')
 
 
 def resnet_lstm_unweighted(optimizer='adam', learning_rate=0.0001):

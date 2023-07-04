@@ -12,8 +12,8 @@ from scikeras.wrappers import KerasClassifier
 #     'saved_dataset/crema_data_train.npy')
 # train_data_target = np.load('saved_dataset/crema_data_target.npy')
 # test_data_value = np.load(
-#     'saved_dataset/crema_data_test.npy')
-# test_data_target = np.load('saved_dataset/crema_data_test_target.npy')
+#     'saved_dataset/crema_data_validation.npy')
+# test_data_target = np.load('saved_dataset/crema_data_validation_target.npy')
 
 
 def cnn_lstm(optimizer='adam', learning_rate=0.0001, code=""):
@@ -109,8 +109,9 @@ def resnet_unweighted(optimizer='adam', learning_rate=0.0001):
 train_data_value = np.load('saved_dataset/crema_d_f32_train_data_value.npy')
 train_data_target = np.load('saved_dataset/crema_d_f32_train_data_target.npy')
 test_data_value = np.load(
-    'saved_dataset/crema_d_f32_test_data_value.npy')
-test_data_target = np.load('saved_dataset/crema_d_f32_test_data_target.npy')
+    'saved_dataset/crema_d_f32_validation_data_value.npy')
+test_data_target = np.load(
+    'saved_dataset/crema_d_f32_validation_data_target.npy')
 
 optimizer_list = ['adam', 'rmsprop', 'sgd', 'adagrad']
 learning_rate_list = [0.1]
@@ -126,8 +127,8 @@ for x in optimizer_list:
 #     'saved_dataset/40_2048_512_train_data_value_normalized.npy')
 # train_data_target = np.load('saved_dataset/40_2048_512_train_data_target.npy')
 # test_data_value = np.load(
-#     'saved_dataset/40_2048_512_test_data_value_normalized.npy')
-# test_data_target = np.load('saved_dataset/40_2048_512_test_data_target.npy')
+#     'saved_dataset/40_2048_512_validation_data_value_normalized.npy')
+# test_data_target = np.load('saved_dataset/40_2048_512_validation_data_target.npy')
 
 # cnn_lstm(code="normalized")
 

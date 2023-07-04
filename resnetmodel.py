@@ -35,23 +35,23 @@ def resnet_unweighted(optimizer='adam', learning_rate=0.0001, dataset="x"):
 # train_data_value = np.load('saved_dataset/saveeFix/standardSR_savee_data.npy')
 # train_data_target = np.load(
 #     'saved_dataset/saveeFix/standardSR_savee_data_target.npy')
-# test_data_value = np.load('saved_dataset/saveeFix/standardSR_savee_test.npy')
+# test_data_value = np.load('saved_dataset/saveeFix/standardSR_savee_validation.npy')
 # test_data_target = np.load(
-#     'saved_dataset/saveeFix/standardSR_savee_test_target.npy')
+#     'saved_dataset/saveeFix/standardSR_savee_validation_target.npy')
 # resnet_unweighted("sgd", 0.01, "savee")
 
-# test_data_value = np.load('saved_dataset/ravdessFix/ravdess_test.npy')
-# test_data_target = np.load('saved_dataset/ravdessFix/ravdess_test_target.npy')
+# test_data_value = np.load('saved_dataset/ravdessFix/ravdess_validation.npy')
+# test_data_target = np.load('saved_dataset/ravdessFix/ravdess_validation_target.npy')
 # train_data_value = np.load(
 #     'saved_dataset/ravdessFix/ravdess_data.npy')
 # train_data_target = np.load(
 #     'saved_dataset/ravdessFix/ravdess_data_target.npy')
 # resnet_unweighted("adagrad", 0.01, "ravdess")
 
-train_data_value = np.load(
-    'saved_dataset/crema_data_train.npy')
-train_data_target = np.load('saved_dataset/crema_data_target.npy')
-test_data_value = np.load(
-    'saved_dataset/crema_data_test.npy')
-test_data_target = np.load('saved_dataset/crema_data_test_target.npy')
-resnet_unweighted("adam", 0.001, "crema-d")
+# train_data_value = np.load(
+#     'saved_dataset/crema_data_train.npy')
+# train_data_target = np.load('saved_dataset/crema_data_target.npy')
+# test_data_value = np.load(
+#     'saved_dataset/crema_data_test.npy')
+# test_data_target = np.load('saved_dataset/crema_data_test_target.npy')
+# resnet_unweighted("adam", 0.001, "crema-d")

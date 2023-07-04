@@ -11,8 +11,8 @@ import math
 
 # train_data_value = np.load('saved_dataset/40_2048_512_train_data_value.npy')
 # train_data_target = np.load('saved_dataset/40_2048_512_train_data_target.npy')
-# test_data_value = np.load('saved_dataset/40_2048_512_test_data_value.npy')
-# test_data_target = np.load('saved_dataset/40_2048_512_test_data_target.npy')
+# test_data_value = np.load('saved_dataset/40_2048_512_validation_data_value.npy')
+# test_data_target = np.load('saved_dataset/40_2048_512_validation_data_target.npy')
 
 
 def cnn_lstm(optimizer='adam', learning_rate=0.0001, modelName="x"):
@@ -66,21 +66,21 @@ def cnn_lstm(optimizer='adam', learning_rate=0.0001, modelName="x"):
 
 # train_data_value = np.load('saved_dataset/crema_data_train.npy')
 # train_data_target = np.load('saved_dataset/crema_data_target.npy')
-# test_data_value = np.load('saved_dataset/crema_data_test.npy')
-# test_data_target = np.load('saved_dataset/crema_data_test_target.npy')
+# test_data_value = np.load('saved_dataset/crema_data_validation.npy')
+# test_data_target = np.load('saved_dataset/crema_data_validation_target.npy')
 
 # train_data_value = np.load('saved_dataset/40_2048_512_train_data_value.npy')
 # train_data_target = np.load('saved_dataset/40_2048_512_train_data_target.npy')
 # test_data_value = np.load(
-#     'saved_dataset/40_2048_512_test_data_value.npy')
-# test_data_target = np.load('saved_dataset/40_2048_512_test_data_target.npy')
+#     'saved_dataset/40_2048_512_validation_data_value.npy')
+# test_data_target = np.load('saved_dataset/40_2048_512_validation_data_target.npy')
 
 # yang bener
 # train_data_value = np.load('saved_dataset/crema_d_f32_train_data_value.npy')
 # train_data_target = np.load('saved_dataset/crema_d_f32_train_data_target.npy')
 # test_data_value = np.load(
-#     'saved_dataset/crema_d_f32_test_data_value.npy')
-# test_data_target = np.load('saved_dataset/crema_d_f32_test_data_target.npy')
+#     'saved_dataset/crema_d_f32_validation_data_value.npy')
+# test_data_target = np.load('saved_dataset/crema_d_f32_validation_data_target.npy')
 
 # model, history = cnn_lstm(
 #     learning_rate=0.001, modelName="RobustCNNLSTM-CREMA-DataLamaf32Batch16")
@@ -88,11 +88,11 @@ def cnn_lstm(optimizer='adam', learning_rate=0.0001, modelName="x"):
 
 # train_data_value = np.load('crema_d_f32_train_data_value.npy')
 # train_data_target = np.load('crema_d_f32_train_data_target.npy')
-# test_data_value = np.load('crema_d_f32_test_data_value.npy')
-# test_data_target = np.load('crema_d_f32_test_data_target.npy')
+# test_data_value = np.load('crema_d_f32_validation_data_value.npy')
+# test_data_target = np.load('crema_d_f32_validation_data_target.npy')
 
-# test_data_value = np.load('saved_dataset/ravdessFix/ravdess_test.npy')
-# test_data_target = np.load('saved_dataset/ravdessFix/ravdess_test_target.npy')
+# test_data_value = np.load('saved_dataset/ravdessFix/ravdess_validation.npy')
+# test_data_target = np.load('saved_dataset/ravdessFix/ravdess_validation_target.npy')
 # train_data_value = np.load(
 #     'saved_dataset/ravdessFix/ravdess_dataWithGaussian_train.npy')
 # train_data_target = np.load(
@@ -156,8 +156,8 @@ def cnn_lstm(optimizer='adam', learning_rate=0.0001, modelName="x"):
 #     'saved_dataset/ravdessFix/ravdess_dataWithGaussian_train.npy')
 # train_data_target = np.load(
 #     'saved_dataset/ravdessFix/ravdess_dataWithGaussian_target.npy')
-# test_data_value = np.load('saved_dataset/ravdess_test.npy')
-# test_data_target = np.load('saved_dataset/ravdess_test_target.npy')
+# test_data_value = np.load('saved_dataset/ravdess_validation.npy')
+# test_data_target = np.load('saved_dataset/ravdess_validation_target.npy')
 
 # model, history = cnn_lstm(
 #     learning_rate=0.0001, modelName="RobustCNN3secondLayerNormalDataH5")
@@ -167,8 +167,8 @@ def cnn_lstm(optimizer='adam', learning_rate=0.0001, modelName="x"):
 #     'saved_dataset/ravdessFix/ravdess_dataWithPitchShift_train.npy')
 # train_data_target = np.load(
 #     'saved_dataset/ravdessFix/ravdess_dataWithPitchShift_target.npy')
-# test_data_value = np.load('saved_dataset/ravdess_test.npy')
-# test_data_target = np.load('saved_dataset/ravdess_test_target.npy')
+# test_data_value = np.load('saved_dataset/ravdess_validation.npy')
+# test_data_target = np.load('saved_dataset/ravdess_validation_target.npy')
 
 # model, history = cnn_lstm(
 #     learning_rate=0.0001, modelName="ravdess_with_pitchshift")
@@ -178,8 +178,8 @@ def cnn_lstm(optimizer='adam', learning_rate=0.0001, modelName="x"):
 #     'saved_dataset/ravdessFix/ravdess_dataWithTimeStretch2_train.npy')
 # train_data_target = np.load(
 #     'saved_dataset/ravdessFix/ravdess_dataWithTimeStretch2_target.npy')
-# test_data_value = np.load('saved_dataset/ravdess_test.npy')
-# test_data_target = np.load('saved_dataset/ravdess_test_target.npy')
+# test_data_value = np.load('saved_dataset/ravdess_validation.npy')
+# test_data_target = np.load('saved_dataset/ravdess_validation_target.npy')
 # model, history = cnn_lstm(
 #     learning_rate=0.0001, modelName="ravdess_with_timestretch")
 
@@ -187,8 +187,9 @@ train_data_value = np.load(
     'saved_dataset/ravdessFix/ravdess_data.npy')
 train_data_target = np.load(
     'saved_dataset/ravdessFix/ravdess_data_target.npy')
-test_data_value = np.load('saved_dataset/ravdessFix/ravdess_test.npy')
-test_data_target = np.load('saved_dataset/ravdessFix/ravdess_test_target.npy')
+test_data_value = np.load('saved_dataset/ravdessFix/ravdess_validation.npy')
+test_data_target = np.load(
+    'saved_dataset/ravdessFix/ravdess_validation_target.npy')
 
 model, history = cnn_lstm(
     learning_rate=0.0001, modelName="BuatInterface1")
@@ -207,8 +208,8 @@ model, history = cnn_lstm(
 # train_data_target3 = np.load(
 #     'saved_dataset/crema_train_pitch_target.npy')
 
-# test_data_value = np.load('saved_dataset/crema_d_f32_test_data_value.npy')
-# test_data_target = np.load('saved_dataset/crema_d_f32_test_data_target.npy')
+# test_data_value = np.load('saved_dataset/crema_d_f32_validation_data_value.npy')
+# test_data_target = np.load('saved_dataset/crema_d_f32_validation_data_target.npy')
 
 # train_data_value.concat(train_data_value[train_data_value.len:])
 # train_data_value = np.concatenate((train_data_value, train_data_value2[math.floor(len(train_data_value2)/2):]), axis=0)
@@ -233,8 +234,8 @@ model, history = cnn_lstm(
 #     'saved_dataset/crema_train_pitch_value_padded.npy')
 # train_data_target = np.load(
 #     'saved_dataset/crema_train_pitch_target.npy')
-# test_data_value = np.load('saved_dataset/crema_d_f32_test_data_value.npy')
-# test_data_target = np.load('saved_dataset/crema_d_f32_test_data_target.npy')
+# test_data_value = np.load('saved_dataset/crema_d_f32_validation_data_value.npy')
+# test_data_target = np.load('saved_dataset/crema_d_f32_validation_data_target.npy')
 
 # model, history = cnn_lstm(
 #     learning_rate=0.001, modelName="RCL4crema-d-pitch")
@@ -243,8 +244,8 @@ model, history = cnn_lstm(
 #     'saved_dataset/crema_train_timeStretch_value_padded.npy')
 # train_data_target = np.load(
 #     'saved_dataset/crema_train_timeStretch_target.npy')
-# test_data_value = np.load('saved_dataset/crema_d_f32_test_data_value.npy')
-# test_data_target = np.load('saved_dataset/crema_d_f32_test_data_target.npy')
+# test_data_value = np.load('saved_dataset/crema_d_f32_validation_data_value.npy')
+# test_data_target = np.load('saved_dataset/crema_d_f32_validation_data_target.npy')
 
 # model, history = cnn_lstm(
 #     learning_rate=0.001, modelName="RCL4crema-d-timeStretch")
@@ -254,8 +255,8 @@ model, history = cnn_lstm(
 #     'saved_dataset/crema_d_f32_train_data_value.npy')
 # train_data_target = np.load(
 #     'saved_dataset/crema_d_f32_train_data_target.npy')
-# test_data_value = np.load('saved_dataset/crema_d_f32_test_data_value.npy')
-# test_data_target = np.load('saved_dataset/crema_d_f32_test_data_target.npy')
+# test_data_value = np.load('saved_dataset/crema_d_f32_validation_data_value.npy')
+# test_data_target = np.load('saved_dataset/crema_d_f32_validation_data_target.npy')
 
 # model, history = cnn_lstm(
 #     learning_rate=0.001, modelName="RCL4crema-d-")
