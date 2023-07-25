@@ -22,3 +22,4 @@ variables.*
 *.npy
 *.png
 *.wav
+src

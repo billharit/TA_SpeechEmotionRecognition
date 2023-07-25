@@ -1,6 +1,0 @@
-pandas
-matplotlib
-librosa
-numpy
-librosa
-tensorflow==2.10
