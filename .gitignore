@@ -21,5 +21,8 @@ SaveeDataset
 variables.*
 *.npy
 *.png
+*.jpg
 *.wav
-src
+src/timinglog
+src/logs
+src/timinglogaug

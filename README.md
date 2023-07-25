@@ -15,3 +15,7 @@ The project consists of the following Jupyter notebook files:
 ## Dataset
 
 The jupyter notebook files on this project use CREMA-D Dataset as examples.
+
+## Author's Note
+
+if you want the complete version of the code, view the src folder (it's really disorganized).
