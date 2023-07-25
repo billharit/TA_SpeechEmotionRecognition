@@ -3,6 +3,21 @@
 ## Overview
 
 The CNN-LSTM Speech Emotion Recognition project focuses on the task of recognizing human emotions from speech using a combination of Convolutional Neural Networks (CNN) and Long Short-Term Memory (LSTM) networks. Emotion recognition from speech has significant applications in areas like affective computing, human-computer interaction, and sentiment analysis.
+This Project use Python as the main language with the help of TensorFlow FrameWork for Deep Learning, Librosa for Sound Analysis, Audiomentations for Augmentation, and Gradio for Interface.
+
+## Model Demo
+
+To run the model. install required library from requirement.txt in terminal with:
+
+```python
+pip install requirement.txt -r
+```
+
+and to run just simply run app.py and it will output a url that can be accessed from your browser
+
+```python
+python app.py
+```
 
 ## Jupyter Notebook Files
 

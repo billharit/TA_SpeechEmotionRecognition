@@ -26,3 +26,8 @@ variables.*
 src/timinglog
 src/logs
 src/timinglogaug
+!DatasetExample/*.wav
+!BuatInterface1/*.pb
+!BuatInterface1/*.index
+!BuatInterface1/variables.*
+
